@@ -585,17 +585,19 @@ function Board.DetermineSpecial(board, matches, preferredRow, preferredColumn)
         local row, column = string.match(position, "^(%d+):(%d+)$")
         row = tonumber(row)
         column = tonumber(column)
-        local horizontal = countMatchedDirection(matches, row, column, 0, 1)
-        local vertical = countMatchedDirection(matches, row, column, 1, 0)
+        if not board[row][column].special then
+            local horizontal = countMatchedDirection(matches, row, column, 0, 1)
+            local vertical = countMatchedDirection(matches, row, column, 1, 0)
 
-        if horizontal >= 5 or vertical >= 5 then
-            return row, column, "color"
-        end
+            if horizontal >= 5 or vertical >= 5 then
+                return row, column, "color"
+            end
 
-        if horizontal >= 3 and vertical >= 3 then
-            explosiveCandidate = explosiveCandidate or { row, column }
-        elseif horizontal >= 4 or vertical >= 4 then
-            directionalCandidate = directionalCandidate or { row, column }
+            if horizontal >= 3 and vertical >= 3 then
+                explosiveCandidate = explosiveCandidate or { row, column }
+            elseif horizontal >= 4 or vertical >= 4 then
+                directionalCandidate = directionalCandidate or { row, column }
+            end
         end
     end
 

@@ -30,6 +30,50 @@ end
 
 -- Move planning
 TestRunner.describe("MovePlanner.Plan", function()
+    TestRunner.it("explodes a matched bomb while creating a four-match special", function()
+        -- Given
+        local board = patternedBoard()
+        board[4][2] = cell(2)
+        board[4][3] = cell(2)
+        board[4][4] = cell(2)
+        board[4][5] = cell(3)
+        board[3][5] = { gemType = 2, special = "explosive" }
+
+        -- When
+        local plan = MovePlanner.Plan(board, 0, 3, 5, 4, 5)
+
+        -- Then
+        local clearStep = plan.steps[2]
+        TestRunner.assertTrue(plan.accepted)
+        TestRunner.assertEqual("bomb", clearStep.effects[1].effectType)
+        TestRunner.assertEqual(4, clearStep.effects[1].row)
+        TestRunner.assertEqual(5, clearStep.effects[1].column)
+        TestRunner.assertEqual("directional", clearStep.special.specialType)
+        TestRunner.assertFalse(clearStep.special.row == 4
+            and clearStep.special.column == 5)
+    end)
+
+    TestRunner.it("explodes a stationary bomb in a four-gem match", function()
+        -- Given
+        local board = patternedBoard()
+        board[4][2] = cell(2)
+        board[4][3] = { gemType = 2, special = "explosive" }
+        board[4][4] = cell(2)
+        board[4][5] = cell(3)
+        board[3][5] = cell(2)
+
+        -- When
+        local plan = MovePlanner.Plan(board, 0, 3, 5, 4, 5)
+
+        -- Then
+        local clearStep = plan.steps[2]
+        TestRunner.assertTrue(plan.accepted)
+        TestRunner.assertEqual("bomb", clearStep.effects[1].effectType)
+        TestRunner.assertEqual(4, clearStep.effects[1].row)
+        TestRunner.assertEqual(3, clearStep.effects[1].column)
+        TestRunner.assertEqual("directional", clearStep.special.specialType)
+    end)
+
     TestRunner.it("uses the moved directional bomb swap axis", function()
         -- Given
         local board = patternedBoard()
