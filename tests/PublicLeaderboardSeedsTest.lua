@@ -5,7 +5,7 @@ local PublicLeaderboardSeeds = require("Game.PublicLeaderboardSeeds")
 
 -- Version 1 public leaderboard seeds
 TestRunner.describe("PublicLeaderboardSeeds", function()
-    TestRunner.it("provides the nine requested players", function()
+    TestRunner.it("includes Catbury's recorded score with the default players", function()
         -- Given
         local expectedNames = {
             Fortytwo = true,
@@ -17,16 +17,26 @@ TestRunner.describe("PublicLeaderboardSeeds", function()
             Velainor = true,
             Palioxamoura = true,
             Zarlas = true,
+            ["Catbury-Kazzak"] = true,
         }
 
         -- When
         local entries = PublicLeaderboardSeeds.GetEntries()
 
         -- Then
-        TestRunner.assertEqual(9, #entries)
+        TestRunner.assertEqual(10, #entries)
         for _, entry in ipairs(entries) do
             TestRunner.assertTrue(expectedNames[entry.name])
             expectedNames[entry.name] = nil
+            if entry.name == "Catbury-Kazzak" then
+                TestRunner.assertEqual("6aa19d82e283bf5c516e", entry.accountId)
+                TestRunner.assertEqual("Player-1305-0D2826FB", entry.guid)
+                TestRunner.assertEqual(191670, entry.score)
+                TestRunner.assertEqual(27, entry.level)
+            end
+        end
+        for _ in pairs(expectedNames) do
+            TestRunner.assertTrue(false)
         end
     end)
 

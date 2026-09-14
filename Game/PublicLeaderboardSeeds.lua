@@ -18,17 +18,24 @@ local seedDefinitions = {
     { "Velainor", "seedv1velainor", "BB5EED07", 10380 },
     { "Palioxamoura", "seedv1palioxamoura", "BB5EED08", 7890 },
     { "Zarlas", "seedv1zarlas", "BB5EED09", 4620 },
+    {
+        "Catbury-Kazzak",
+        "6aa19d82e283bf5c516e",
+        "0D2826FB",
+        191670,
+        "Player-1305-0D2826FB",
+    },
 }
 
 local function createEntry(definition)
-    local name, accountId, guidSuffix, score = unpack(definition)
+    local name, accountId, guidSuffix, score, guid = unpack(definition)
     local level = Scoring.GetLevel(score)
     local scoreData = {
         accountId = accountId,
         sessionId = SEED_SESSION_ID,
         sequence = SEED_VERSION,
         name = name,
-        guid = "Player-0-" .. guidSuffix,
+        guid = guid or "Player-0-" .. guidSuffix,
         score = score,
         level = level,
     }

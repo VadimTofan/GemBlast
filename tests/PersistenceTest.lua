@@ -174,8 +174,8 @@ TestRunner.describe("Persistence.Normalize", function()
             sequence = 4,
             name = "Jaina-Proudmoore",
             guid = "Player-1-ABCDEF01",
-            score = 725,
-            level = 3,
+            score = 200000,
+            level = 28,
         })
         local Board = require("Game.Board")
         local savedData = {
@@ -193,11 +193,11 @@ TestRunner.describe("Persistence.Normalize", function()
 
         -- Then
         TestRunner.assertEqual(
-            725,
+            200000,
             normalized.partyTopScores.account000000001.score
         )
         TestRunner.assertEqual(
-            725,
+            200000,
             normalized.publicTopScores.account000000001.score
         )
     end)
@@ -233,7 +233,7 @@ TestRunner.describe("Persistence.Normalize", function()
         end
 
         TestRunner.assertEqual(0, next(normalized.partyTopScores) and 1 or 0)
-        TestRunner.assertEqual(9, publicCount)
+        TestRunner.assertEqual(10, publicCount)
     end)
 
     TestRunner.it("applies a higher score from a weekly seed update", function()
