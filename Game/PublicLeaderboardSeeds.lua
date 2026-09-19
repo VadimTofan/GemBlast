@@ -22,7 +22,7 @@ local seedDefinitions = {
         "Catbury-Kazzak",
         "6aa19d82e283bf5c516e",
         "0D2826FB",
-        191670,
+        264010,
         "Player-1305-0D2826FB",
     },
 }

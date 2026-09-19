@@ -31,8 +31,8 @@ TestRunner.describe("PublicLeaderboardSeeds", function()
             if entry.name == "Catbury-Kazzak" then
                 TestRunner.assertEqual("6aa19d82e283bf5c516e", entry.accountId)
                 TestRunner.assertEqual("Player-1305-0D2826FB", entry.guid)
-                TestRunner.assertEqual(191670, entry.score)
-                TestRunner.assertEqual(27, entry.level)
+                TestRunner.assertEqual(264010, entry.score)
+                TestRunner.assertEqual(32, entry.level)
             end
         end
         for _ in pairs(expectedNames) do

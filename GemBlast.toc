@@ -2,7 +2,7 @@
 ## Title: Gem Blast
 ## Notes: Play an original fantasy match-three game inside World of Warcraft.
 ## Author: Vadim
-## Version: 0.1.12
+## Version: 0.1.13
 ## X-Curse-Project-ID: 1688263
 ## IconTexture: Interface\AddOns\GemBlast\Media\Gems64\Blue.png
 ## SavedVariables: GemBlastDB, BetterBejeweledDB
