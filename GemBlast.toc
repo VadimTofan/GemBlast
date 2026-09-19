@@ -1,4 +1,4 @@
-## Interface: 11509, 20506, 38002, 50504, 120100
+## Interface: 11509, 16001, 20506, 38002, 50504, 120100
 ## Title: Gem Blast
 ## Notes: Play an original fantasy match-three game inside World of Warcraft.
 ## Author: Vadim

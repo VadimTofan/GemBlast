@@ -75,7 +75,7 @@ TestRunner.describe("CurseForge release workflow", function()
 
         -- When
         local hasAllInterfaces = toc:find(
-            "## Interface: 11509, 20506, 38002, 50504, 120100",
+            "## Interface: 11509, 16001, 20506, 38002, 50504, 120100",
             1,
             true
         ) ~= nil
@@ -96,7 +96,7 @@ TestRunner.describe("CurseForge release workflow", function()
 
         -- When
         local validatesInterfaces = workflow:find(
-            "11509, 20506, 38002, 50504, 120100",
+            "11509, 16001, 20506, 38002, 50504, 120100",
             1,
             true
         ) ~= nil

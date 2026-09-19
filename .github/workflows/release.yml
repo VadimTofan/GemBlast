@@ -72,7 +72,7 @@ jobs:
               | sed -n 's/^## Interface:[[:space:]]*//p'
           )"
           if [[ "$packaged_interfaces" \
-              != "11509, 20506, 38002, 50504, 120100" ]]; then
+              != "11509, 16001, 20506, 38002, 50504, 120100" ]]; then
             echo "Release archive has incorrect client interfaces."
             exit 1
           fi
