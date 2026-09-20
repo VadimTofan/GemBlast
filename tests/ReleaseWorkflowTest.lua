@@ -56,7 +56,7 @@ TestRunner.describe("CurseForge release workflow", function()
             true
         ) ~= nil
         local hasReleaseVersion = toc:find(
-            "## Version: 0.1.13",
+            "## Version: 0.1.14",
             1,
             true
         ) ~= nil
