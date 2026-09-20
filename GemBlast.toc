@@ -19,6 +19,7 @@ Game\ScoreSession.lua
 Game\LeaderboardStore.lua
 Game\PublicLeaderboardSeeds.lua
 Game\PublicLeaderboard.lua
+Game\ChannelOrder.lua
 Game\AutoToggle.lua
 Communication.lua
 Persistence.lua

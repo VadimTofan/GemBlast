@@ -112,6 +112,35 @@ TestRunner.describe("Public leaderboard integration", function()
         TestRunner.assertTrue(visitsChatFrames)
     end)
 
+    TestRunner.it("moves the public channel behind joined channels", function()
+        -- Given
+        local file = assert(io.open("Core.lua", "r"))
+        local source = file:read("*a")
+        file:close()
+
+        -- When
+        local readsChannels = source:find(
+            "GetChannelList",
+            1,
+            true
+        ) ~= nil
+        local swapsChannels = source:find(
+            "SwapChatChannelsByChannelIndex",
+            1,
+            true
+        ) ~= nil
+        local movesAfterJoin = source:find(
+            "movePublicChannelToLast",
+            1,
+            true
+        ) ~= nil
+
+        -- Then
+        TestRunner.assertTrue(readsChannels)
+        TestRunner.assertTrue(swapsChannels)
+        TestRunner.assertTrue(movesAfterJoin)
+    end)
+
     TestRunner.it("finishes a pending join check after a delay", function()
         -- Given
         local file = assert(io.open("Core.lua", "r"))

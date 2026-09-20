@@ -98,6 +98,24 @@ local function registerPublicChannelFilters()
     end
 end
 
+local function movePublicChannelToLast(channelId)
+    if not C_ChatInfo.SwapChatChannelsByChannelIndex then
+        return
+    end
+
+    local channelList = { GetChannelList() }
+    local channelIds = {}
+    for index = 1, #channelList, 3 do
+        channelIds[#channelIds + 1] = channelList[index]
+    end
+
+    addon.ChannelOrder.MoveToLast(
+        channelId,
+        channelIds,
+        C_ChatInfo.SwapChatChannelsByChannelIndex
+    )
+end
+
 local function handlePublicConnection(finalCheck)
     if not addon.publicLeaderboard then
         return
@@ -105,6 +123,7 @@ local function handlePublicConnection(finalCheck)
 
     local newlyConnected = addon.publicLeaderboard:RefreshConnection(finalCheck)
     if newlyConnected then
+        movePublicChannelToLast(addon.publicLeaderboard.channelId)
         broadcastScore()
         queuePublicStore()
         addon.communication:BroadcastPublicRequest(
